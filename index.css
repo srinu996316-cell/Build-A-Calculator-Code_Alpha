@@ -1,0 +1,744 @@
+/* ============================================
+   Design Tokens & Reset
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* ── Dark Theme (default) ── */
+  --bg-deep: #07071a;
+  --bg-surface: rgba(255, 255, 255, 0.04);
+  --bg-surface-hover: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(16, 16, 36, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-shine: rgba(255, 255, 255, 0.03);
+
+  /* Accent */
+  --accent: #7c6cf0;
+  --accent-glow: rgba(124, 108, 240, 0.35);
+  --accent-soft: rgba(124, 108, 240, 0.12);
+  --equals-bg: linear-gradient(135deg, #7c6cf0 0%, #b362e8 100%);
+  --equals-shadow: rgba(124, 108, 240, 0.40);
+
+  /* Number buttons */
+  --btn-num-bg: rgba(255, 255, 255, 0.055);
+  --btn-num-hover: rgba(255, 255, 255, 0.11);
+  --btn-num-active: rgba(255, 255, 255, 0.17);
+  --btn-num-border: rgba(255, 255, 255, 0.04);
+
+  /* Utility buttons */
+  --btn-util-bg: rgba(255, 170, 100, 0.09);
+  --btn-util-color: #ffaa64;
+  --btn-util-hover: rgba(255, 170, 100, 0.18);
+  --btn-util-active: rgba(255, 170, 100, 0.28);
+  --btn-util-border: rgba(255, 170, 100, 0.06);
+
+  /* Operator buttons */
+  --btn-op-bg: rgba(124, 108, 240, 0.09);
+  --btn-op-color: #a99ffe;
+  --btn-op-hover: rgba(124, 108, 240, 0.20);
+  --btn-op-active: rgba(124, 108, 240, 0.32);
+  --btn-op-border: rgba(124, 108, 240, 0.06);
+
+  /* Text */
+  --text-primary: #f0f0f8;
+  --text-secondary: rgba(240, 240, 248, 0.50);
+  --text-muted: rgba(240, 240, 248, 0.22);
+  --text-inverse: #1a1a2e;
+
+  /* Display */
+  --display-bg: rgba(0, 0, 0, 0.25);
+  --display-border: rgba(255, 255, 255, 0.06);
+
+  /* History */
+  --history-bg: rgba(0, 0, 0, 0.20);
+  --history-item-hover: rgba(255, 255, 255, 0.05);
+
+  /* Sizing */
+  --calc-width: 380px;
+  --btn-gap: 10px;
+  --radius-xl: 28px;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+  --radius-sm: 12px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 120ms;
+  --dur-normal: 220ms;
+  --dur-slow: 400ms;
+
+  /* Orb colours */
+  --orb1: rgba(124, 108, 240, 0.30);
+  --orb2: rgba(179, 98, 232, 0.22);
+  --orb3: rgba(255, 170, 100, 0.13);
+}
+
+/* ── Light Theme ── */
+[data-theme="light"] {
+  --bg-deep: #f0f0f8;
+  --glass-bg: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shine: rgba(255, 255, 255, 0.50);
+
+  --accent: #6c5ce7;
+  --accent-glow: rgba(108, 92, 231, 0.18);
+  --equals-bg: linear-gradient(135deg, #6c5ce7 0%, #a855f7 100%);
+  --equals-shadow: rgba(108, 92, 231, 0.25);
+
+  --btn-num-bg: rgba(0, 0, 0, 0.04);
+  --btn-num-hover: rgba(0, 0, 0, 0.08);
+  --btn-num-active: rgba(0, 0, 0, 0.13);
+  --btn-num-border: rgba(0, 0, 0, 0.06);
+
+  --btn-util-bg: rgba(230, 126, 34, 0.08);
+  --btn-util-color: #d35400;
+  --btn-util-hover: rgba(230, 126, 34, 0.16);
+  --btn-util-active: rgba(230, 126, 34, 0.24);
+  --btn-util-border: rgba(230, 126, 34, 0.10);
+
+  --btn-op-bg: rgba(108, 92, 231, 0.07);
+  --btn-op-color: #6c5ce7;
+  --btn-op-hover: rgba(108, 92, 231, 0.15);
+  --btn-op-active: rgba(108, 92, 231, 0.24);
+  --btn-op-border: rgba(108, 92, 231, 0.10);
+
+  --text-primary: #1a1a2e;
+  --text-secondary: rgba(26, 26, 46, 0.55);
+  --text-muted: rgba(26, 26, 46, 0.25);
+  --text-inverse: #fff;
+
+  --display-bg: rgba(0, 0, 0, 0.03);
+  --display-border: rgba(0, 0, 0, 0.07);
+
+  --history-bg: rgba(0, 0, 0, 0.03);
+  --history-item-hover: rgba(0, 0, 0, 0.04);
+
+  --orb1: rgba(108, 92, 231, 0.12);
+  --orb2: rgba(168, 85, 247, 0.10);
+  --orb3: rgba(230, 126, 34, 0.08);
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background var(--dur-slow) ease, color var(--dur-slow) ease;
+}
+
+/* ============================================
+   Ambient Background Orbs
+   ============================================ */
+.app-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(110px);
+  opacity: 0.6;
+  pointer-events: none;
+  will-change: transform;
+  animation: float 14s ease-in-out infinite alternate;
+  transition: background var(--dur-slow) ease, opacity var(--dur-slow) ease;
+}
+
+.orb-1 {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, var(--orb1), transparent 70%);
+  top: -120px;
+  left: -120px;
+}
+
+.orb-2 {
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, var(--orb2), transparent 70%);
+  bottom: -90px;
+  right: -90px;
+  animation-delay: -5s;
+}
+
+.orb-3 {
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle, var(--orb3), transparent 70%);
+  top: 40%;
+  left: 55%;
+  animation-delay: -9s;
+}
+
+@keyframes float {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(25px, -30px) scale(1.04); }
+  66%  { transform: translate(-15px, 20px) scale(0.97); }
+  100% { transform: translate(20px, 25px) scale(1.02); }
+}
+
+/* ============================================
+   Calculator Shell
+   ============================================ */
+.calculator {
+  width: var(--calc-width);
+  background: var(--glass-bg);
+  backdrop-filter: blur(50px) saturate(160%);
+  -webkit-backdrop-filter: blur(50px) saturate(160%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  box-shadow:
+    0 0 0 1px var(--glass-shine) inset,
+    0 30px 70px -15px rgba(0, 0, 0, 0.45),
+    0 0 100px -25px var(--accent-glow);
+  animation: calc-enter 0.7s var(--ease-out-expo) both;
+  position: relative;
+  z-index: 1;
+  transition: background var(--dur-slow) ease,
+              border-color var(--dur-slow) ease,
+              box-shadow var(--dur-slow) ease;
+}
+
+@keyframes calc-enter {
+  from { opacity: 0; transform: translateY(40px) scale(0.94); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================
+   Top Bar
+   ============================================ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding: 0 6px;
+}
+
+.topbar__title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.topbar__actions {
+  display: flex;
+  gap: 4px;
+}
+
+.topbar__btn {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast) ease,
+              color var(--dur-fast) ease,
+              border-color var(--dur-fast) ease;
+}
+
+.topbar__btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+  border-color: var(--glass-border);
+}
+
+.topbar__btn:active {
+  transform: scale(0.92);
+}
+
+/* Theme toggle icon management */
+[data-theme="dark"] .icon-sun  { display: none; }
+[data-theme="dark"] .icon-moon { display: block; }
+[data-theme="light"] .icon-sun  { display: block; }
+[data-theme="light"] .icon-moon { display: none; }
+
+/* ============================================
+   Display
+   ============================================ */
+.display {
+  background: var(--display-bg);
+  border: 1px solid var(--display-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 14px;
+  min-height: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  overflow: hidden;
+  position: relative;
+  transition: background var(--dur-slow) ease, border-color var(--dur-slow) ease;
+}
+
+.display::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(160deg, var(--glass-shine) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.display__expression {
+  font-family: 'JetBrains Mono', 'Inter', monospace;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  min-height: 1.4em;
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+  transition: color var(--dur-fast) ease;
+  letter-spacing: 0.03em;
+}
+
+.display__result {
+  font-family: 'JetBrains Mono', 'Inter', monospace;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  word-break: break-all;
+  text-align: right;
+  width: 100%;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  transition: transform var(--dur-normal) var(--ease-out-expo),
+              color var(--dur-fast) ease;
+}
+
+/* Shrink text when it gets long */
+.display__result.shrink-1 { font-size: 2.2rem; }
+.display__result.shrink-2 { font-size: 1.7rem; }
+.display__result.shrink-3 { font-size: 1.3rem; }
+
+.display__result.flash {
+  animation: result-flash 0.35s var(--ease-spring);
+}
+
+@keyframes result-flash {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Error state */
+.display__result.error {
+  color: #ff6b6b;
+}
+
+/* ============================================
+   History Panel
+   ============================================ */
+.history-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--dur-slow) var(--ease-out-expo),
+              margin var(--dur-slow) var(--ease-out-expo),
+              opacity var(--dur-normal) ease;
+  opacity: 0;
+  margin-bottom: 0;
+}
+
+.history-panel.open {
+  max-height: 200px;
+  opacity: 1;
+  margin-bottom: 14px;
+}
+
+.history-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.history-panel__clear {
+  appearance: none;
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background var(--dur-fast) ease;
+}
+
+.history-panel__clear:hover {
+  background: var(--accent-soft);
+}
+
+.history-panel__list {
+  list-style: none;
+  max-height: 155px;
+  overflow-y: auto;
+  padding: 0 6px 6px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--glass-border) transparent;
+}
+
+.history-panel__list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.history-panel__list::-webkit-scrollbar-thumb {
+  background: var(--glass-border);
+  border-radius: 4px;
+}
+
+.history-panel__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background var(--dur-fast) ease;
+  animation: hist-in 0.3s var(--ease-out-expo) both;
+}
+
+.history-panel__item:hover {
+  background: var(--history-item-hover);
+}
+
+@keyframes hist-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.history-panel__item-expr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.history-panel__item-result {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.history-panel__empty {
+  text-align: center;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ============================================
+   Button Grid
+   ============================================ */
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--btn-gap);
+}
+
+/* ============================================
+   Base Button
+   ============================================ */
+.btn {
+  appearance: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform 80ms var(--ease-spring),
+    box-shadow var(--dur-fast) ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline-offset: 2px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+/* Ripple overlay */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+    rgba(255, 255, 255, 0.18),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.btn:active::after {
+  opacity: 1;
+  transition: opacity 0s;
+}
+
+.btn:active {
+  transform: scale(0.92);
+}
+
+/* ============================================
+   Number Buttons
+   ============================================ */
+.btn--number {
+  background: var(--btn-num-bg);
+  color: var(--text-primary);
+  border-color: var(--btn-num-border);
+}
+
+.btn--number:hover {
+  background: var(--btn-num-hover);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.btn--number:active {
+  background: var(--btn-num-active);
+}
+
+[data-theme="light"] .btn--number:hover {
+  border-color: rgba(0, 0, 0, 0.10);
+}
+
+/* Zero spans two columns */
+.btn--wide {
+  grid-column: span 2;
+}
+
+/* ============================================
+   Utility Buttons (AC, DEL, %)
+   ============================================ */
+.btn--util {
+  background: var(--btn-util-bg);
+  color: var(--btn-util-color);
+  border-color: var(--btn-util-border);
+  font-weight: 600;
+}
+
+.btn--util:hover {
+  background: var(--btn-util-hover);
+  border-color: rgba(255, 170, 100, 0.12);
+}
+
+.btn--util:active {
+  background: var(--btn-util-active);
+}
+
+/* ============================================
+   Operator Buttons (÷ × − +)
+   ============================================ */
+.btn--operator {
+  background: var(--btn-op-bg);
+  color: var(--btn-op-color);
+  border-color: var(--btn-op-border);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.btn--operator:hover {
+  background: var(--btn-op-hover);
+  border-color: rgba(124, 108, 240, 0.14);
+}
+
+.btn--operator:active {
+  background: var(--btn-op-active);
+}
+
+.btn--operator.active {
+  background: var(--btn-op-hover);
+  border-color: var(--accent);
+  box-shadow: 0 0 18px -5px var(--accent-glow);
+}
+
+/* ============================================
+   Equals Button
+   ============================================ */
+.btn--equals {
+  background: var(--equals-bg);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 4px 22px -4px var(--equals-shadow);
+  position: relative;
+}
+
+/* Shine sweep */
+.btn--equals::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+
+.btn--equals:hover::before {
+  left: 120%;
+}
+
+.btn--equals:hover {
+  box-shadow: 0 6px 30px -4px var(--equals-shadow);
+  filter: brightness(1.08);
+}
+
+.btn--equals:active {
+  filter: brightness(0.95);
+}
+
+/* ============================================
+   Keyboard Hint
+   ============================================ */
+.keyboard-hint {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  animation: hint-fade 0.8s 1.2s ease both;
+}
+
+.keyboard-hint__icon {
+  font-size: 0.85rem;
+}
+
+@keyframes hint-fade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Key-press visual feedback
+   ============================================ */
+.btn.pressed {
+  transform: scale(0.92);
+  filter: brightness(1.25);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 420px) {
+  :root {
+    --calc-width: calc(100vw - 24px);
+    --btn-gap: 8px;
+  }
+
+  .calculator {
+    padding: 14px;
+    border-radius: 22px;
+  }
+
+  .topbar { margin-bottom: 10px; }
+
+  .display {
+    padding: 16px 18px;
+    min-height: 95px;
+    border-radius: 14px;
+  }
+
+  .display__result {
+    font-size: 2.2rem;
+  }
+
+  .btn {
+    height: 54px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+  }
+
+  .btn--operator { font-size: 1.2rem; }
+  .btn--equals   { font-size: 1.3rem; }
+}
+
+@media (max-width: 340px) {
+  .btn {
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .display__result { font-size: 1.8rem; }
+}
+
+/* ============================================
+   Reduced motion
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

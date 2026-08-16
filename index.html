@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A sleek, premium calculator with arithmetic operations, calculation history, keyboard support, and stunning glassmorphism design." />
+  <title>Calculator Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- Ambient glow orbs -->
+    <div class="orb orb-1" aria-hidden="true"></div>
+    <div class="orb orb-2" aria-hidden="true"></div>
+    <div class="orb orb-3" aria-hidden="true"></div>
+
+    <main class="calculator" id="calculator" role="application" aria-label="Calculator">
+      <!-- Top bar -->
+      <header class="topbar">
+        <span class="topbar__title">Calculator</span>
+        <div class="topbar__actions">
+          <button class="topbar__btn" id="btn-history-toggle" aria-label="Toggle history" title="History">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </button>
+          <button class="topbar__btn" id="btn-theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+            <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Display -->
+      <section class="display" id="display-section">
+        <p class="display__expression" id="expression" aria-live="polite"></p>
+        <p class="display__result" id="result" aria-live="assertive">0</p>
+      </section>
+
+      <!-- History panel -->
+      <section class="history-panel" id="history-panel" aria-label="Calculation history">
+        <div class="history-panel__header">
+          <span>History</span>
+          <button class="history-panel__clear" id="btn-history-clear" aria-label="Clear history">Clear</button>
+        </div>
+        <ul class="history-panel__list" id="history-list">
+          <li class="history-panel__empty">No calculations yet</li>
+        </ul>
+      </section>
+
+      <!-- Buttons -->
+      <section class="buttons" id="buttons-section">
+        <button class="btn btn--util" id="btn-clear" data-action="clear" aria-label="Clear all">AC</button>
+        <button class="btn btn--util" id="btn-delete" data-action="delete" aria-label="Delete last character">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>
+        </button>
+        <button class="btn btn--util" id="btn-percent" data-action="percent" aria-label="Percent">%</button>
+        <button class="btn btn--operator" id="btn-divide" data-action="operator" data-value="÷" aria-label="Divide">÷</button>
+
+        <button class="btn btn--number" id="btn-7" data-action="number" data-value="7">7</button>
+        <button class="btn btn--number" id="btn-8" data-action="number" data-value="8">8</button>
+        <button class="btn btn--number" id="btn-9" data-action="number" data-value="9">9</button>
+        <button class="btn btn--operator" id="btn-multiply" data-action="operator" data-value="×" aria-label="Multiply">×</button>
+
+        <button class="btn btn--number" id="btn-4" data-action="number" data-value="4">4</button>
+        <button class="btn btn--number" id="btn-5" data-action="number" data-value="5">5</button>
+        <button class="btn btn--number" id="btn-6" data-action="number" data-value="6">6</button>
+        <button class="btn btn--operator" id="btn-subtract" data-action="operator" data-value="−" aria-label="Subtract">−</button>
+
+        <button class="btn btn--number" id="btn-1" data-action="number" data-value="1">1</button>
+        <button class="btn btn--number" id="btn-2" data-action="number" data-value="2">2</button>
+        <button class="btn btn--number" id="btn-3" data-action="number" data-value="3">3</button>
+        <button class="btn btn--operator" id="btn-add" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+        <button class="btn btn--number btn--wide" id="btn-0" data-action="number" data-value="0">0</button>
+        <button class="btn btn--number" id="btn-decimal" data-action="decimal" data-value=".">.</button>
+        <button class="btn btn--equals" id="btn-equals" data-action="equals" aria-label="Equals">=</button>
+      </section>
+
+      <p class="keyboard-hint" aria-hidden="true">
+        <span class="keyboard-hint__icon">⌨</span> Keyboard supported
+      </p>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
